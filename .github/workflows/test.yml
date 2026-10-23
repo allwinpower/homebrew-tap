@@ -1,0 +1,43 @@
+name: Test
+
+# Audits, installs and tests the formula from its real release files, on
+# macOS and Linux. sshuttle2's release workflow pushes a new formula for
+# every release, and that push runs this.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sshuttle2:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.runner }}
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: 1
+      HOMEBREW_NO_INSTALL_CLEANUP: 1
+      HOMEBREW_NO_ENV_HINTS: 1
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+      - name: Audit, install and test
+        run: |
+          set -euo pipefail
+          if [ ! -f Formula/sshuttle2.rb ]; then
+            echo "No formula yet: it arrives with sshuttle2's first release."
+            exit 0
+          fi
+          # Homebrew is on the Linux runners too, but not on their PATH.
+          command -v brew >/dev/null || eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+          # This checkout, tapped under the name people install from.
+          brew tap allwinpower/tap "$PWD"
+          brew audit --strict --online --formula allwinpower/tap/sshuttle2
+          brew install --formula allwinpower/tap/sshuttle2
+          brew test allwinpower/tap/sshuttle2
