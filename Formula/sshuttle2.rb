@@ -8,23 +8,23 @@ class Sshuttle2 < Formula
   # The version comes from the URLs.
   on_macos do
     on_arm do
-      url "https://github.com/allwinpower/sshuttle2/releases/download/v0.1.1/sshuttle2-0.1.1-macos-arm64.tar.gz"
-      sha256 "613e9885995d06e96006abb8c94c597e32877f20d7b47a18037dce189460b9fa"
+      url "https://github.com/allwinpower/sshuttle2/releases/download/v0.1.2/sshuttle2-0.1.2-macos-arm64.tar.gz"
+      sha256 "68a287be381950afb74d4735f584fe76e662a18e12936e65ba37c6193d14ea44"
     end
     on_intel do
-      url "https://github.com/allwinpower/sshuttle2/releases/download/v0.1.1/sshuttle2-0.1.1-macos-amd64.tar.gz"
-      sha256 "cafa5e3c1cd4dd5a9c02f9a52e2f90f42ac0a21aee227bed3b13627a08ead020"
+      url "https://github.com/allwinpower/sshuttle2/releases/download/v0.1.2/sshuttle2-0.1.2-macos-amd64.tar.gz"
+      sha256 "43c3da4a32b30cc818b906a90abde0a8ec71a59fc43ca45ff154c358682286ba"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/allwinpower/sshuttle2/releases/download/v0.1.1/sshuttle2-0.1.1-linux-arm64.tar.gz"
-      sha256 "6fe29e8762087982ff360c3e5dbd757df0eb848f16a0f516e4c45b3626c0c732"
+      url "https://github.com/allwinpower/sshuttle2/releases/download/v0.1.2/sshuttle2-0.1.2-linux-arm64.tar.gz"
+      sha256 "6b0c5cf30c280d9940ea26a66e11be48669959064bd04c9219e56ae74f19ba1d"
     end
     on_intel do
-      url "https://github.com/allwinpower/sshuttle2/releases/download/v0.1.1/sshuttle2-0.1.1-linux-amd64.tar.gz"
-      sha256 "46032174579efb458809c69293765c69a5c3aba99c6323f12f407aa7cc6e35a3"
+      url "https://github.com/allwinpower/sshuttle2/releases/download/v0.1.2/sshuttle2-0.1.2-linux-amd64.tar.gz"
+      sha256 "659fcf4c7d0147d6e767f557aab8cb5e699e134e9370e354f98b158e1dbb09c3"
     end
   end
 
