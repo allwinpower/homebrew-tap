@@ -8,36 +8,40 @@ class Sshuttle2 < Formula
   # The version comes from the URLs.
   on_macos do
     on_arm do
-      url "https://github.com/allwinpower/sshuttle2/releases/download/v0.2.0/sshuttle2-0.2.0-macos-arm64.tar.gz"
-      sha256 "83fb1e6794190315f995258a3a9d949f5922185af843ea129849ec2eb7186a8b"
+      url "https://github.com/allwinpower/sshuttle2/releases/download/v0.3.0/sshuttle2-0.3.0-macos-arm64.tar.gz"
+      sha256 "5d03fe1caa301f249f257f79f1f44f4b4f46914e9b51bc8b978c89f59181bdc9"
     end
     on_intel do
-      url "https://github.com/allwinpower/sshuttle2/releases/download/v0.2.0/sshuttle2-0.2.0-macos-amd64.tar.gz"
-      sha256 "4b3d5c8c1ea01bda4a1125358bbc8ab228abb5dbbb51958449a9dcfe4ec1f2fb"
+      url "https://github.com/allwinpower/sshuttle2/releases/download/v0.3.0/sshuttle2-0.3.0-macos-amd64.tar.gz"
+      sha256 "8bfd30f0ac0a46df5e294bf3eacb77dc8541ae488b156de8bcb306c7bf2ecde5"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/allwinpower/sshuttle2/releases/download/v0.2.0/sshuttle2-0.2.0-linux-arm64.tar.gz"
-      sha256 "e807c9e3a081d187386443e0cc7987bce4eb58a2d252ac0322f6f3cef8190361"
+      url "https://github.com/allwinpower/sshuttle2/releases/download/v0.3.0/sshuttle2-0.3.0-linux-arm64.tar.gz"
+      sha256 "f77552b5898d03b390b5b49cc340ea0254f2ace0700d3efa6060145231ae7ae7"
     end
     on_intel do
-      url "https://github.com/allwinpower/sshuttle2/releases/download/v0.2.0/sshuttle2-0.2.0-linux-amd64.tar.gz"
-      sha256 "397685436f39608bf6208888d58dad19e51b9140fed24fd56c8b5e56d3b3cf57"
+      url "https://github.com/allwinpower/sshuttle2/releases/download/v0.3.0/sshuttle2-0.3.0-linux-amd64.tar.gz"
+      sha256 "6d4ba65eb3d5e6478e13360af61756b7ad39e3655eaa9c3670bc0b224378629d"
     end
   end
 
   def install
     bin.install "sshuttle2"
+    man1.install "doc/sshuttle2.1"
+    bash_completion.install "complete/sshuttle2.bash" => "sshuttle2"
+    zsh_completion.install "complete/_sshuttle2"
+    fish_completion.install "complete/sshuttle2.fish"
   end
 
   def caveats
     <<~EOS
-      Routing traffic (pf, nft or tun mode) asks for your password, because
-      the firewall rules need root. A SOCKS5 proxy needs no root:
-        sshuttle2 -r user@host --socks5 127.0.0.1:1080
-      On Linux, nft mode needs the system's nft command (package nftables).
+      Routing traffic asks for your password, because the tun device, the
+      routes and the firewall rules need root. A SOCKS5 proxy needs no root:
+        sshuttle2 user@host --socks5 127.0.0.1:1080
+      On Linux, nft mode needs the nft command (nftables).
     EOS
   end
 
